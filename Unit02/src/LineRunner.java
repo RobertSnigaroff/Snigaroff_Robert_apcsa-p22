@@ -1,8 +1,8 @@
 //© A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  - 
+//Name - Robert Snigaroff
+//Date - 02/04/19
+//Class - APCSA
+//Lab  - Slope of a Line
 
 public class LineRunner
 {

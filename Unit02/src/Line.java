@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
-//Date -
+//Name - Robert Snigaroff
+//Date - 02/04/19
 
 public class Line
 {
