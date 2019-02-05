@@ -35,12 +35,12 @@ public class MilesPerHour
 
 	public void calcMPH()
 	{
-		mph = distance/(hours + (minutes/60));
+		mph = distance/(hours+(minutes/60));
 	}
 
 	public void print()
 	{
-		System.out.print(distance + " miles in " + hours + " hours and " + minutes + " minutes = " + (int)mph +" MPH.");
+		System.out.printf((int)distance + " miles in " + (int)hours + " hours and " + (int)minutes + " minutes = " + String.format("%.0f",mph) +" MPH.");
 	}
 	
 	//create a print or toString or both

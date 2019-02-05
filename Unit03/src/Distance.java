@@ -12,7 +12,7 @@ import static java.lang.Math.*;
 
 public class Distance
 {
-	private int xOne,yOne,xTwo,yTwo;
+	private double xOne,yOne,xTwo,yTwo;
 	private double distance;
 
 	public Distance()
@@ -36,7 +36,7 @@ public class Distance
 
 	public void calcDistance()
 	{
-		distance = sqrt((xTwo - xOne)^2 + (yTwo - yOne)^2);
+		distance = sqrt((xTwo - xOne)*(xTwo - xOne) + (yTwo - yOne)*(yTwo - yOne));
 	}
 	
 	public double getDistance()
@@ -46,7 +46,7 @@ public class Distance
 	
 	public void print()
 	{
-		System.out.print("distance = " + distance);
+		System.out.printf("distance = " + "%.3f",distance);
 	}
 	
 	//complete print or the toString
