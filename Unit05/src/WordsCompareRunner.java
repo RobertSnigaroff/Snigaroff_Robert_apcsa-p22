@@ -13,6 +13,9 @@ public class WordsCompareRunner
    public static void main( String args[] )
    {
 		//add test cases
+	   Scanner keyboard = new Scanner(in);
+	   
+	   WordsCompare 
 
 	}
 }
