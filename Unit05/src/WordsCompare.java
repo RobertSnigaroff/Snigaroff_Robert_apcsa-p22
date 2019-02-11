@@ -11,7 +11,7 @@ import static java.lang.System.*;
 public class WordsCompare
 {
 	private String wordOne, wordTwo;
-   private int compare;
+	private int compare;
 
 	public WordsCompare()
 	{
@@ -28,6 +28,7 @@ public class WordsCompare
 	{
 		wordOne = one;
 		wordTwo = two;
+		compare = 0;
 	}
 
 	public void compare()
@@ -37,6 +38,7 @@ public class WordsCompare
 
 	public String toString()
 	{
+		compare();
 		if(compare<0)
 		{
 			return wordOne + " should be placed before " + wordTwo + "\n";
