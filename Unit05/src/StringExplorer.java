@@ -29,7 +29,14 @@ public class StringExplorer
 		
 		//  Try other methods here:
 		String str = "Computer Science is the best, the greatest, and the most wonderful subject to study!";
-		int num = str.indexOf("the");
+		
+		int i = str.indexOf("the");
+
+		while (i >= 0) {
+			System.out.println(i);;
+			i = str.indexOf("the",i+1);
+			
+		}
 
 	}
 

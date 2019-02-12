@@ -34,9 +34,27 @@ public class Magpie3
 		{
 			response = "Say something, please.";
 		}
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement,"dog") >= 0
+				|| findKeyword(statement,"cat") >= 0) 
 		{
-			response = "Why so negative?";
+			response = "Tell me more about your pets.";
+		}
+		else if (findKeyword(statement,"Mauro") >= 0)
+		{
+			response = "Mr. Mauro is a god.";
+		}
+		else if (findKeyword(statement,"house") >= 0
+				|| findKeyword(statement,"home") >= 0)
+		{
+			response = "Where do you live?";
+		}
+		else if (findKeyword(statement,"sport") >= 0)
+		{
+			response = "Do you play any sports?";
+		}
+		else if (findKeyword(statement,"game") >= 0)
+		{
+			response = "What games do you like to play?";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
@@ -44,6 +62,10 @@ public class Magpie3
 				|| findKeyword(statement, "brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement, "no") >= 0)
+		{
+			response = "Why so negative?";
 		}
 		else
 		{
