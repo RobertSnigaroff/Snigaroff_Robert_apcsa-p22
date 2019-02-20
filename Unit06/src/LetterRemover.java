@@ -12,7 +12,7 @@ public class LetterRemover
 	public LetterRemover(String s, char rem)
 	{
 		//call set
-		setRemover("",'0');
+		setRemover("",'\u0000');
 	}
 
 	//add in second constructor
@@ -30,9 +30,11 @@ public class LetterRemover
 
 	public String removeLetters()
 	{
-		String cleaned=sentence;
-		while (cleaned.indexOf(lookFor) > -1) {
-			cleaned.replace(lookFor, '\u0000');
+		String cleaned = "";
+		for (int i = 0;i<sentence.length();i++) {
+			if (sentence.charAt(i)!=lookFor) {
+				cleaned = cleaned + sentence.charAt(i);
+			}
 		}
 		
 		return cleaned;
@@ -40,6 +42,6 @@ public class LetterRemover
 
 	public String toString()
 	{
-		return sentence + " - letter to remove " + lookFor + "\n" + removeLetters();
+		return sentence + " - letter to remove " + lookFor + "\n" + removeLetters() + "\n\n";
 	}
 }
