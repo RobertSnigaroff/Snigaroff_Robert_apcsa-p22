@@ -10,12 +10,15 @@ public class BiggestDouble
 
 	public BiggestDouble()
 	{
-		this(0,0,0,0);
+		one = 0;
+		two = 0;
+		three = 0;
+		four = 0;
 	}
 
 	public BiggestDouble(double a, double b, double c, double d)
 	{
-		setDoubles(0,0,0,0);
+		setDoubles(a,b,c,d);
 	}
 
 	public void setDoubles(double a, double b, double c, double d)
@@ -28,12 +31,18 @@ public class BiggestDouble
 
 	public double getBiggest()
 	{
-		if ()
-		return 0.0;
+		double[] array = {one,two,three,four};
+		double biggest = array[0];
+		for (int i = 0;i<array.length;i++) {
+			if (array[i]>biggest) {
+				biggest = array[i];
+			}
+		}
+		return biggest;
 	}
 
 	public String toString()
 	{
-	   return "";
+	   return one + " " + two + " " + three + " " + four + "\n" + "biggest = " + getBiggest();
 	}
 }
