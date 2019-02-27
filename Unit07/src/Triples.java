@@ -40,7 +40,6 @@ public class Triples
 	}
 
 	public String findNumbers() {
-		int[] sums = new int[18];
 		
 		for (int a=1;a<number;a++) {
 			for (int b=1;b<number;b++) {
