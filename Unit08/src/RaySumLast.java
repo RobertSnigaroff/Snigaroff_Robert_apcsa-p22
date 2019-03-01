@@ -7,6 +7,14 @@ public class RaySumLast
 {
 	private int[] array;
 	
+	public RaySumLast()
+	{
+		setRay(null);
+	}
+	public RaySumLast(int[] ray)
+	{
+		setRay(ray);
+	}
 	public void setRay(int[] ray)
 	{
 		array = ray;
@@ -14,9 +22,9 @@ public class RaySumLast
 	public int go(int[] ray)
 	{
 		int sum = 0;
-		for (int i=0;i<array.length;i++) {
-			if (array[i] > array[array.length-1]) {
-				sum = sum + array[i];
+		for (int i=0;i<ray.length;i++) {
+			if (ray[i] > ray[ray.length-1]) {
+				sum = sum + ray[i];
 			}
 		}
 		if (sum == 0) {
