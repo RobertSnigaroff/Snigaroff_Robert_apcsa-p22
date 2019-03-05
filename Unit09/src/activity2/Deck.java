@@ -32,16 +32,17 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		ArrayList<Card> outputlist = new ArrayList<Card>();
 		for (int i=0;i<ranks.length;i++) {
 			String inputRank = ranks[i];
 			int inputValues = values[i];
 			
-			for (int j=i;j<suits.length;j++) {
-				String inputSuit = suits[i];
-				Card inputCard = new Card(inputRank,inputSuit,inputValues);
-				cards.add(inputCard);
+			for (int j=0;j<suits.length;j++) {
+				String inputSuit = suits[j];
+				outputlist.add(new Card(inputRank,inputSuit,inputValues));
 			}
 		}
+		cards = outputlist;
 	}
 
 
@@ -63,7 +64,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
+		return size;
 	}
 
 	/**
@@ -81,6 +82,14 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (cards.size() == 0) {
+			return null;
+		}
+		else {
+			Card holder = cards.get(0);
+			cards.remove(0);
+			return holder;
+		}
 	}
 
 	/**
