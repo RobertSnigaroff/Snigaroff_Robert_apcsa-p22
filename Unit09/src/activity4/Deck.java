@@ -1,4 +1,4 @@
-package activity2;
+package activity4;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -72,14 +72,7 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */		
-		for (int i=size()-1;i>0;i--) {
-			int r = (int)Math.floor(size()*Math.random());
-			Card card1Temp = cards.get(i);
-			Card card2Temp = cards.get(r);
-			cards.set(i, card2Temp);
-			cards.set(r, card1Temp);
-		}
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 		
 	}
 
