@@ -1,4 +1,5 @@
 package activity1;
+
 /**
  * This is a class that tests the Card class.
  */

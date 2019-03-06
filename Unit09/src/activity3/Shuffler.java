@@ -1,4 +1,7 @@
 package activity3;
+
+import activity1.Card;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -8,21 +11,24 @@ public class Shuffler {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 3;
 
 	/**
 	 * The number of values to shuffle.
 	 */
-	private static final int VALUE_COUNT = 4;
+	private static final int VALUE_COUNT = 9;
 
 	/**
 	 * Tests shuffling methods.
 	 * @param args is not used.
 	 */
+	private static int[] values1;
+	private static int[] values2;
+	
 	public static void main(String[] args) {
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
-		int[] values1 = new int[VALUE_COUNT];
+		values1 = new int[VALUE_COUNT];
 		for (int i = 0; i < values1.length; i++) {
 			values1[i] = i;
 			}
@@ -38,7 +44,7 @@ public class Shuffler {
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = new int[VALUE_COUNT];
+		values2 = new int[VALUE_COUNT];
 		for (int i = 0; i < values2.length; i++) {
 			values2[i] = i;
 			}
@@ -63,12 +69,22 @@ public class Shuffler {
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
 		int[] cards = values;
-		int[] shuffled = new int[52];
+		int[] shuffled = new int[cards.length];
+		
 		int k = 0;
 		
-		for (int j=0;j<26;j++) {
-			cards[j]
+		for (int j=0;j<(cards.length + 1)/2;j++) {
+			shuffled[k] = cards[j];
+			k = k + 2;
 		}
+		
+		k = 1;
+		
+		for (int j=(cards.length + 1)/2;j<cards.length;j++) {
+			shuffled[k] = cards[j];
+			k = k + 2;
+		}
+		values1 = shuffled;
 	}
 
 	/**
@@ -84,5 +100,16 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] cards = values;
+		int[] shuffled = new int[cards.length];
+		
+		for (int i=cards.length-1;i>0;i--) {
+			int r = (int)Math.floor(cards.length*Math.random());
+			shuffled[i] = cards[i];
+			cards[i] = cards[r];
+			cards[r] = shuffled[i];
+		}
+		
+		values2 = cards;
 	}
 }
