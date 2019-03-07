@@ -25,5 +25,10 @@ public class DeckTester {
 		System.out.println(three.isEmpty());
 		System.out.println(three.size());
 		System.out.println(three.deal());
+		
+		Deck standard = new Deck(new String[] {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"}, new String[] {"Spades","Diamonds","Clubs","Hearts"}, new int[] {1,2,3,4,5,6,7,8,9,10,11,12,13});
+		
+		standard.shuffle();
+		standard.printCards();
 	}
 }

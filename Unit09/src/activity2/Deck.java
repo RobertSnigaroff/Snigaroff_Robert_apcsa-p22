@@ -64,6 +64,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		size = cards.size();
 		return size;
 	}
 
@@ -98,6 +99,14 @@ public class Deck {
 			cards.remove(0);
 			return holder;
 		}
+	}
+	
+	public void printCards()
+	{
+		for (int i=0;i<size();i++) {
+			System.out.println(cards.get(i));
+		}
+		System.out.println();
 	}
 
 	/**
