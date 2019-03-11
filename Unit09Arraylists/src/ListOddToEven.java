@@ -12,7 +12,7 @@ public class ListOddToEven
 	{
 		for (int i=0;i<ray.size();i++) {
 			if (ray.get(i) % 2 != 0) {
-				for (int j=i;j<ray.size();j++) {
+				for (int j=ray.size()-1;j>i;j--) {
 					if (ray.get(j) % 2 == 0) {
 						return j - i;
 					}
