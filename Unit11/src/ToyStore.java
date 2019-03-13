@@ -10,7 +10,7 @@ import static java.lang.System.*;
 
 public class ToyStore
 {
-	private ArrayList<Toy> toyList;
+	private ArrayList<Toy> toyList = new ArrayList<Toy>();
 
 	public ToyStore()
 	{
@@ -18,8 +18,17 @@ public class ToyStore
 
 	public void loadToys( String toys )
 	{
-		Toy newToy = new Toy(toys);
-		toyList.add(newToy);
+		int count = 0;
+		for (int i=0;i<toyList.size();i++) {
+			if (toyList.get(i).getName().equals(toys)) {
+				toyList.get(i).setCount(toyList.get(i).getCount() + 1);
+				count++;
+			}
+		}
+		if (count == 0) {
+			Toy newToy = new Toy(toys);
+			toyList.add(newToy);
+		}
 	}
   
   	public Toy getThatToy( String nm )
@@ -35,21 +44,16 @@ public class ToyStore
   
   	public String getMostFrequentToy()
   	{
-  		int bigCount = 0;
+  		String name = "";
   		int count = 0;
+  		
   		for (int i=0;i<toyList.size();i++) {
-  			for (int j=0;j<toyList.size();j++) {
-  				if (toyList.get(i) == toyList.get(j)) {
-  					count++;
-  				}
+  			if (toyList.get(i).getCount() > count) {
+  				count = toyList.get(i).getCount();
+  				name = toyList.get(i).getName();
   			}
-  			if (count > bigCount) {
-  				bigCount = count;
-  			}
-  			count = 0;
-  			
   		}
-  		return toyList.get(bigCount).getName();
+  		return name;
   	}  
   
   	public void sortToysByCount()
@@ -58,10 +62,10 @@ public class ToyStore
   	  
 	public String toString()
 	{
-		String output = "[]\\n[";
+		String output = "[]\n[";
 		
 	   for (int i=0;i<toyList.size();i++) {
-		   output = output + toyList.get(i).getName() + " " + toyList.get(i).getCount();
+		   output = output + toyList.get(i).getName() + " " + (toyList.get(i).getCount()+1) + " ";
 	   }
 	   output = output + "]\n" + "max = " + getMostFrequentToy();
 	   return output;

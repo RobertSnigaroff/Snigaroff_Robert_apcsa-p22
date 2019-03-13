@@ -11,8 +11,8 @@ public class Toy
 
 	public Toy()
 	{
-		name = "";
-		count = 0;
+		setName("");
+		setCount(0);
 	}
 
 	public Toy(String nm)

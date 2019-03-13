@@ -13,7 +13,18 @@ public class ToyStoreRunner
 	{
 		ToyStore test = new ToyStore();
 		
-		test.loadToys("sorry");
+		test.loadToys("Sorry");
+		test.loadToys("Bat");
+		test.loadToys("Sorry");
+		test.loadToys("Sorry");
+		test.loadToys("Sorry");
+		test.loadToys("Train");
+		test.loadToys("Train");
+		test.loadToys("Teddy");
+		test.loadToys("Teddy");
+		test.loadToys("Ball");
+		test.loadToys("Ball");
+		
 		out.print(test);
 	}
 }
