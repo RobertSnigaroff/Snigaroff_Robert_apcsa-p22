@@ -13,7 +13,7 @@ class Rational implements Comparable<Rational>
 	//write two constructors
 	public Rational() 
 	{
-		setRational(0,0);
+		setRational(1,1);
 	}
 	
 	public Rational(int num, int den)
@@ -55,8 +55,12 @@ class Rational implements Comparable<Rational>
 
 	private void reduce()
 	{
-		numerator = numerator/gcd(numerator,denominator);
-		denominator = denominator/gcd(numerator,denominator);
+		int placeNum = numerator;
+		int placeDen = denominator;
+		if (gcd(placeNum,placeDen) != 0) {
+			numerator = placeNum/gcd(placeNum,placeDen);
+			denominator = placeDen/gcd(placeNum,placeDen);
+		}
 	}
 
 	private int gcd(int numOne, int numTwo)
@@ -97,15 +101,27 @@ class Rational implements Comparable<Rational>
 	
 	public boolean equals(Rational obj)
 	{
-		if (numerator == obj.getNumerator() && denominator == obj.getDenominator()) {
-			return true;
+		if (gcd(numerator,denominator) != 0 && gcd(obj.getNumerator(),obj.getDenominator()) != 0) {
+			if (((numerator/gcd(numerator,denominator)) == (obj.getNumerator())/gcd(obj.getNumerator(),obj.getDenominator())) && (denominator/gcd(numerator,denominator)) == (obj.getDenominator()/gcd(obj.getNumerator(),obj.getDenominator()))) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
-		return false;
+		else {
+			if (numerator == obj.getNumerator() && denominator == obj.getDenominator()) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}
 
 	public int compareTo(Rational other)
 	{
-		if ((numerator/denominator) > (other.getNumerator()/other.getDenominator())) {
+		if (((double)numerator/(double)denominator) > ((double)other.getNumerator()/(double)other.getDenominator())) {
 			return 1;
 		}
 		return -1;
@@ -117,7 +133,8 @@ class Rational implements Comparable<Rational>
 	//write  toString() method
 	public String toString() 
 	{
-		return "";
+		reduce();
+		return "" + numerator + "/" + denominator;
 	}
 	
 }
