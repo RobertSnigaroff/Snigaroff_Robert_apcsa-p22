@@ -25,15 +25,21 @@ public class WordRunner
 			words.add(word);
 		}
 		
+		ArrayList<Word> wordsInOrder = new ArrayList<Word>();
 		Word bigWord = words.get(0);
-		for (int i=0;i<size;i++) {
-			if (words.get(i).compareTo(bigWord) > 0) {
-				bigWord = words.get(i);
+		for (int i=0;i<words.size();i++) {
+			for (int j=0;j<words.size();j++) {
+				if (words.get(j).compareTo(bigWord) > 0) {
+					bigWord = words.get(j);
+				}
+				wordsInOrder.add(bigWord);
+				break;
+//				words.remove(bigWord);
 			}
 		}
 		
-		for (int i=0;i<size;i++) {
-			System.out.println(words.get(i).getWord());
+		for (int i=0;i<words.size();i++) {
+			System.out.println(wordsInOrder.get(i).getWord());
 		}
 	}
 }
