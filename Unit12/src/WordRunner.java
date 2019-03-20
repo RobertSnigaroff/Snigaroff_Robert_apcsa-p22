@@ -26,19 +26,29 @@ public class WordRunner
 		}
 		
 		ArrayList<Word> wordsInOrder = new ArrayList<Word>();
-		Word bigWord = words.get(0);
-		for (int i=0;i<words.size();i++) {
+		int listSize = words.size();
+		for (int i=0;i<listSize;i++) {
+			Word bigWord = new Word("");
+			int bigIndex = 0;
 			for (int j=0;j<words.size();j++) {
-				if (words.get(j).compareTo(bigWord) > 0) {
+				if (words.get(j).compareTo(bigWord) == 0) {
+					if (words.get(j).getWord().compareTo(bigWord.getWord()) > 0) {
+						bigWord = words.get(j);
+						bigIndex = j;
+					}
+					
+				} 
+				else if (words.get(j).compareTo(bigWord) == 1) {
 					bigWord = words.get(j);
+					bigIndex = j;
 				}
-				wordsInOrder.add(bigWord);
-				break;
-//				words.remove(bigWord);
+			
 			}
+			words.remove(bigIndex);
+			wordsInOrder.add(0,bigWord);			
 		}
 		
-		for (int i=0;i<words.size();i++) {
+		for (int i=0;i<wordsInOrder.size();i++) {
 			System.out.println(wordsInOrder.get(i).getWord());
 		}
 	}
