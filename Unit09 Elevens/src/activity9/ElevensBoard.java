@@ -56,11 +56,7 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		int count = 0;
-		for (int i=0;i<selectedCards.size();i++) {
-			count += selectedCards.get(i);
-		}
-		if (count == 11) {
+		if (containsPairSum11(selectedCards) == true || containsJQK(selectedCards) == true) {
 			return true;
 		}
 		return false;
@@ -77,19 +73,12 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		for (int k=0;k<cards.length;k++) {
-			for (int m=0;m<cards.length;m++) {
-				for (int n=0;n<cards.length;n++) {
-					if ()
-				}
-			}
-		}
+		ArrayList<Integer> indices = new ArrayList<Integer>();
 		for (int i=0;i<cards.length;i++) {
-			for (int j=0;j<cards.length;j++) {
-				if (cards[i].pointValue() + cards[j].pointValue() == 11) {
-					return true;
-				}
-			}
+			indices.add(i);
+		}
+		if (containsPairSum11(indices) == true || containsJQK(indices) == true){
+			return true;
 		}
 		return false;
 	}
@@ -106,7 +95,7 @@ public class ElevensBoard extends Board {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		for (int i=0;i<selectedCards.size();i++) {
 			for (int j=0;j<selectedCards.size();j++) {
-				if (selectedCards.get(i) + selectedCards.get(j) == 11) {
+				if (cards[selectedCards.get(i)].pointValue() + cards[selectedCards.get(j)].pointValue() == 11) {
 					return true;
 				}
 			}
@@ -125,9 +114,15 @@ public class ElevensBoard extends Board {
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		for (int i=0;i<selectedCards.size();i++) {
-			for (int j=0;j<selectedCards.size();j++) {
-				for (int k=0;k<selectedCards.size();k++) {
-					
+			if (cards[selectedCards.get(i)].rank().equals("jack")) {
+				for (int j=0;j<selectedCards.size();j++) {
+					if (cards[selectedCards.get(j)].rank().equals("queen")) {
+						for (int k=0;k<selectedCards.size();k++) {
+							if (cards[selectedCards.get(k)].rank().equals("king")) {
+								return true;
+							}
+						}
+					}
 				}
 			}
 		}
