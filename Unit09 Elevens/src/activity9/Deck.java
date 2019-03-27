@@ -32,19 +32,27 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		Card[] outputlist = new Card[ranks.length * suits.length];
-		int deckloc = 0;
-		for (int i=0;i<ranks.length;i++) {
-			String inputRank = ranks[i];
-			int inputValues = values[i];
-			
-			for (int j=0;j<suits.length;j++) {
-				String inputSuit = suits[j];
-				outputlist[deckloc] = new Card(inputRank,inputSuit,inputValues);
-				deckloc++;
+		cards = new Card[ranks.length*suits.length];
+		for (int i = 0; i < ranks.length; i++) {
+			for (int k = 0; k < suits.length; k++) {
+				cards[i*suits.length+k] = new Card(ranks[i], suits[k], values[i]);
 			}
 		}
-		cards = outputlist;
+		size = cards.length;
+		shuffle();
+//		Card[] outputlist = new Card[ranks.length * suits.length];
+//		int deckloc = 0;
+//		for (int i=0;i<ranks.length;i++) {
+//			String inputRank = ranks[i];
+//			int inputValues = values[i];
+//			
+//			for (int j=0;j<suits.length;j++) {
+//				String inputSuit = suits[j];
+//				outputlist[deckloc] = new Card(inputRank,inputSuit,inputValues);
+//				deckloc++;
+//			}
+//		}
+//		cards = outputlist;
 	}
 
 
@@ -54,10 +62,10 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if (cards.length == 0) {
-			return true;
+		if (size > 0) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -75,15 +83,22 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		for (int i = size()-1; i > 0; i--){
-			int r = (int)(Math.floor(size() * Math.random()));
-			
-			Card card1Temp = cards[i];
-			Card card2Temp = cards[r];
-			cards[i] = card2Temp;
-			cards[r] = card1Temp;
-		
+		size = cards.length;
+		for (int k = cards.length-1; k >= 1; k--) {
+			int r = (int) Math.round(Math.random() * k);
+			Card temp = cards[k];
+			cards[k] = cards[r];
+			cards[r] = temp;
 		}
+//		for (int i = size()-1; i > 0; i--){
+//			int r = (int)(Math.floor(size() * Math.random()));
+//			
+//			Card card1Temp = cards[i];
+//			Card card2Temp = cards[r];
+//			cards[i] = card2Temp;
+//			cards[r] = card1Temp;
+//		
+//		}
 	}
 
 	/**
@@ -93,18 +108,25 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if (cards.length == 0) {
-			return null;
+		if (size > 0) {
+			size--;
+			return cards[size];
 		}
 		else {
-			Card[] newCards = new Card[cards.length - 1];
-			Card holder = cards[0];
-			for (int i = 0; i < newCards.length; i++) {
-				newCards[i] = cards[i+1];
-			}
-			cards = newCards;
-			return holder;
+			return null;
 		}
+//		if (cards.length == 0) {
+//			return null;
+//		}
+//		else {
+//			Card[] newCards = new Card[cards.length - 1];
+//			Card holder = cards[0];
+//			for (int i = 0; i < newCards.length; i++) {
+//				newCards[i] = cards[i+1];
+//			}
+//			cards = newCards;
+//			return holder;
+//		}
 	}
 
 	/**
