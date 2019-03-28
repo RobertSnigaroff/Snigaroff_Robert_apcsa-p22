@@ -6,7 +6,7 @@ import static java.lang.System.*;
 
 public class RecursionFunOne
 {
-	private static int oddCount = 0;
+	private static int evenCount = 0;
 
 	public static int countOddDigits(int num)
 	{
@@ -14,7 +14,7 @@ public class RecursionFunOne
 		
 		if ((int)number.charAt(0) > 0) {
 			if ((int)number.charAt(0) % 2 != 0) {
-				oddCount++;
+				evenCount++;
 			}
 			if (number.length() > 2) {
 				String str = number.substring(1, number.length()+1);
@@ -24,6 +24,6 @@ public class RecursionFunOne
 			countOddDigits(Integer.parseInt(str));
 		}
 		
-		return oddCount;
+		return evenCount;
 	}
 }
