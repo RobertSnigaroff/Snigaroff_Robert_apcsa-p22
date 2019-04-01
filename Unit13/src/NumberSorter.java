@@ -25,21 +25,22 @@ public class NumberSorter
 	public static int[] getSortedDigitArray(int number)
 	{
 		int[] sorted = new int[getNumDigits(number)];
-		int[] newSorted = new int[getNumDigits(number)];
 		int num = number;
 		for (int i=0;i<sorted.length;i++) {
-			sorted[i] = num % 10;
+			int newNumber = num % 10;
+			sorted[i] = newNumber;
 			num = num / 10;
 		}
 		for (int k=0;k<sorted.length;k++) {
-			int small = sorted[k];
-			for (int n=0;n<sorted.length;n++) {
-				if (sorted[n] < small) {
-					small = sorted[n];
+			for (int n=k+1;n<sorted.length;n++) {
+				if (sorted[k] > sorted[n]) {
+					int temp = sorted[k];
+					sorted[k] = sorted[n];
+					sorted[n] = temp;
+					
 				}
 			}
-			newSorted[k] = small;
 		}
-		return newSorted;
+		return sorted;
 	}
 }
