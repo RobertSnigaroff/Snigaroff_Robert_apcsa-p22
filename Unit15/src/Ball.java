@@ -89,6 +89,38 @@ public class Ball extends Block
 	{
 		return ySpeed;
 	}
+	
+	public boolean didCollideLeft(Object obj) {
+		Paddle paddle = (Paddle)obj;
+		if (getX()<=paddle.getX()+paddle.getWidth()&&getX()>paddle.getX()&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean didCollideRight(Object obj) {
+		Paddle paddle = (Paddle)obj;
+		if (getX()+getWidth()>=paddle.getX()&&getX()<paddle.getX()&&(getY()>=paddle.getY() && getY()<=paddle.getY()+paddle.getHeight())){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean didCollideTop(Object obj) {
+		Paddle paddle = (Paddle)obj;
+		if (getY()+getHeight()>=paddle.getY() && getY() < paddle.getY()+paddle.getHeight() && (getX()>=paddle.getX() && getX()+getWidth()<=paddle.getX()+paddle.getWidth())){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean didCollideBottom(Object obj) {
+		Paddle paddle = (Paddle) obj;
+		if (getY()+getHeight()>paddle.getY() && getY() <= paddle.getY()+paddle.getHeight() && (getX()>=paddle.getX() && getX()+getWidth()<=paddle.getX()+paddle.getWidth())){
+					return true;			
+				}
+		return false;
+	}
 
    //add a toString() method
 	public String toString()

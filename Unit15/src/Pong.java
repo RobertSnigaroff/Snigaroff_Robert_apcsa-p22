@@ -64,47 +64,78 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=780))
+		if(!(ball.getX()>=0 && ball.getX()<=getWidth()))
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
+			if (ball.getX() <= leftPaddle.getX()){
+				graphToBack.setColor(Color.WHITE);
+				graphToBack.drawString("Right Player:  " + right, 500, 500);
+				right++;
+				graphToBack.setColor(Color.BLUE);
+				graphToBack.drawString("Right Player:  " + right, 500, 500);
+			}
+			
+			else if (ball.getX() >= rightPaddle.getX()+rightPaddle.getWidth()){
+				graphToBack.setColor(Color.WHITE);
+				graphToBack.drawString("Left Player: "+left, 200, 500);
+				left++;
+				graphToBack.setColor(Color.BLUE);
+				graphToBack.drawString("Left Player: "+left, 200, 500);
+			}
+			
+			ball.draw(graphToBack, Color.WHITE);
+			ball= new Ball(300 + (int) (Math.random() * 200),200 + (int) (Math.random() * 200),10,10,Color.BLACK, (int) (Math.pow(-1,  (int) (Math.random() * 2))) * 3, (int) (Math.random() * 3 + 1) * (int) (Math.pow(-1,  (int) (Math.random() * 2))));
+			ball.moveAndDraw(graphToBack);
 		}
 
 		
 		//see if the ball hits the top or bottom wall 
-
+		if(!(ball.getY()>=0 && ball.getY() <= getHeight())) {
+			ball.setYSpeed(-ball.getYSpeed());
+		}
 
 
 
 		//see if the ball hits the left paddle
-		
-		
-		
-		//see if the ball hits the right paddle
-		
-		
-		
-
+		if (ball.didCollideLeft(leftPaddle)) 
+		{
+			ball.setXSpeed(Math.abs(ball.getXSpeed()));
+		}
+		else if (ball.didCollideRight(rightPaddle)) {
+			ball.setXSpeed(-Math.abs(ball.getXSpeed()));
+		}
+		else if (ball.didCollideTop(leftPaddle) || ball.didCollideTop(rightPaddle)
+				|| ball.didCollideBottom(leftPaddle) || ball.didCollideBottom(rightPaddle)) 
+		{
+			ball.setYSpeed(-ball.getYSpeed());
+		}
 
 		//see if the paddles need to be moved
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		if(keys[0] == true && leftPaddle.getY() >= 0)
+		{
+			leftPaddle.moveUpAndDraw(graphToBack);
+		}
+		
+		if(keys[1] == true && leftPaddle.getY() <= getHeight() - leftPaddle.getHeight())
+		{
+			leftPaddle.moveDownAndDraw(graphToBack);
+		}
+		
+		if(keys[2] == true && rightPaddle.getY() >= 0)
+		{
+			rightPaddle.moveUpAndDraw(graphToBack);
+		}
+		
+		if(keys[3] == true && rightPaddle.getY() <= getHeight()-leftPaddle.getHeight())
+		{
+			rightPaddle.moveDownAndDraw(graphToBack);
+		}
 		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
+
 
 	public void keyPressed(KeyEvent e)
 	{
