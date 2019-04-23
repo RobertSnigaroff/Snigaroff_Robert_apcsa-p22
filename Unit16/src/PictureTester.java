@@ -130,6 +130,30 @@ public class PictureTester
 	  snowman.mirrorArms();
 	  snowman.explore();
   }
+  
+  public static void testMirrorGull()
+  {
+	  Picture seagull = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\seagull.jpg");
+	  seagull.explore();
+	  seagull.mirrorGull();
+	  seagull.explore();
+  }
+  
+  public static void testCopy()
+  {
+	  Picture canvas = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\arch.jpg");
+	  canvas.copy(new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\arch.jpg"), 100, 100);
+	  canvas.explore();
+  }
+  
+  public static void testCopy2()
+  {
+	  Picture flower1 = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\flower1.jpg");
+	  Picture canvas = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\640x480.jpg");
+	  canvas.copy2(flower1, 0, 50, 0, 100);
+	  canvas.copy2(flower1, 50, 100, 0, 50);
+	  canvas.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -149,11 +173,12 @@ public class PictureTester
 //	  testMirrorVerticalRightToLeft();  
 //	  testMirrorHorizontal();
 //	  testMirrorHorizontalBotToTop();
-    testMirrorArms();
-    //testMirrorGull();
-    //testMirrorDiagonal();
+//    testMirrorArms();
+//    testMirrorGull();
+	//testMirrorDiagonal();
 //    testCollage();
-    //testCopy();
+//    testCopy();
+	  testCopy2();
 //    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();

@@ -172,12 +172,35 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void copy2(Picture fromPic, int startRow, int endRow, int startCol, int endCol)
+  {
+	  Pixel fromPixel = null;
+	    Pixel toPixel = null;
+	    Pixel[][] toPixels = this.getPixels2D();
+	    Pixel[][] fromPixels = fromPic.getPixels2D();
+	    for (int fromRow = 0, toRow = startRow; 
+	         fromRow < endRow &&
+	         toRow < endRow; 
+	         fromRow++, toRow++)
+	    {
+	      for (int fromCol = 0, toCol = startCol; 
+	           fromCol < endCol &&
+	           toCol < endCol;  
+	           fromCol++, toCol++)
+	      {
+	        fromPixel = fromPixels[fromRow][fromCol];
+	        toPixel = toPixels[toRow][toCol];
+	        toPixel.setColor(fromPixel.getColor());
+	      }
+	    }
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\flower1.jpg");
+    Picture flower2 = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -187,7 +210,7 @@ public class Picture extends SimplePicture
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\collage.jpg");
   }
   
   
@@ -340,20 +363,41 @@ public class Picture extends SimplePicture
   
   public void mirrorArms()
   {
-    int mirrorPoint = 200;
+    int mirrorPoint = 193;
     Pixel[][] pixels = this.getPixels2D();
-    Pixel leftPixel = null;
-    Pixel rightPixel = null;
-    int width = pixels[0].length;
-    for (int col = 0; col < width; col++)
+    Pixel topPixel = null;
+    Pixel botPixel = null;
+    for (int col = 105; col < 294; col++)
     {
-      for (int row = 0; row < pixels.length/2; row++)
+      for (int row = mirrorPoint; row > 162; row--)
       {
-        leftPixel = pixels[row][col];
-        rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
-        rightPixel.setColor(leftPixel.getColor());
+        topPixel = pixels[row][col];
+        botPixel = pixels[mirrorPoint - row + mirrorPoint][col];
+        botPixel.setColor(topPixel.getColor());
       }
     } 
+  }
+  
+  public void mirrorGull()
+  {
+	  int mirrorPoint = 350;
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    int count = 0;
+	    Pixel[][] pixels = this.getPixels2D();
+	    
+	    // loop through the rows
+	    for (int row = 220; row < 330; row++)
+	    {
+	      // loop from 13 to just before the mirror point
+	      for (int col = 220; col < mirrorPoint; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+	        rightPixel.setColor(leftPixel.getColor());
+	      }
+	    }
   }
   
   /* Main method for testing - each class in Java can have a main 
