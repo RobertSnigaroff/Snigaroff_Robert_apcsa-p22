@@ -154,6 +154,21 @@ public class PictureTester
 	  canvas.copy2(flower1, 50, 100, 0, 50);
 	  canvas.explore();
   }
+  
+  public static void testEdgeDetection2()
+  {
+    Picture swan = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\swan.jpg");
+    swan.edgeDetection2(10);
+    swan.explore();
+  }
+  
+  public static void testMirrorDiagonal()
+  {
+	  Picture beach = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.mirrorDiagonal();
+	  beach.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -175,12 +190,14 @@ public class PictureTester
 //	  testMirrorHorizontalBotToTop();
 //    testMirrorArms();
 //    testMirrorGull();
-	//testMirrorDiagonal();
+	testMirrorDiagonal();
 //    testCollage();
 //    testCopy();
-	  testCopy2();
+//	  testCopy2();
 //    testEdgeDetection();
-    //testEdgeDetection2();
+//    testEdgeDetection2();
+	  
+	  
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);

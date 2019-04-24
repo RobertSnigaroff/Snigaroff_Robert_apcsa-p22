@@ -240,6 +240,40 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void edgeDetection2(int edgeDist)
+  {
+	  Pixel leftPixel = null;
+	  	Pixel rightPixel = null;
+	  	Pixel topPixel = null;
+	  	Pixel botPixel = null;
+	    Pixel[][] pixels = this.getPixels2D();
+	    Color rightColor = null;
+	    Color topColor = null;
+	    for (int row = 0; row < pixels.length-1; row++)
+	    {
+	      for (int col = 0; 
+	           col < pixels[0].length-1; col++)
+	      {
+	        leftPixel = pixels[row][col];
+	        rightPixel = pixels[row][col+1];
+	        rightColor = rightPixel.getColor();
+	        botPixel = pixels[row][col];
+	        topPixel = pixels[row+1][col];
+	        topColor = topPixel.getColor();
+	        if (leftPixel.colorDistance(rightColor) > 
+	            edgeDist && botPixel.colorDistance(topColor) > edgeDist) {
+	          leftPixel.setColor(Color.BLACK);
+	          botPixel.setColor(Color.BLACK);
+	        }
+	        else {
+	        	botPixel.setColor(Color.WHITE);
+	        	leftPixel.setColor(Color.WHITE);
+	        }
+	      }
+	    }
+	 }
+  
+  
   public void keepOnlyBlue()
   {
 	 Pixel[][] pixels = this.getPixels2D();
@@ -398,6 +432,21 @@ public class Picture extends SimplePicture
 	        rightPixel.setColor(leftPixel.getColor());
 	      }
 	    }
+   }
+  
+  public void mirrorDiagonal()
+  {
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  Pixel[][] pixels = this.getPixels2D();
+	  
+	  for (int row=0;row<480;row++) {
+		  for (int col=0;col<480;col++) {
+			  leftPixel = pixels[col][row];
+			  rightPixel = pixels[row][col];
+			  rightPixel.setColor(leftPixel.getColor());
+		  }
+	  }
   }
   
   /* Main method for testing - each class in Java can have a main 
