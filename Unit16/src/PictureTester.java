@@ -190,7 +190,7 @@ public class PictureTester
 //	  testMirrorHorizontalBotToTop();
 //    testMirrorArms();
 //    testMirrorGull();
-	testMirrorDiagonal();
+//	  testMirrorDiagonal();
 //    testCollage();
 //    testCopy();
 //	  testCopy2();
