@@ -198,6 +198,14 @@ public class PictureTester
 //    testEdgeDetection2();
 	  
 	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
