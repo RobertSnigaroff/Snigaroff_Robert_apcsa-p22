@@ -77,10 +77,16 @@ public class Paddle extends Block
 	   return speed;
    }
    
+   public void setSpeed(int spd)
+   {
+	   speed = spd;
+   }
+   
    //add a toString() method
    public String toString() 
    {
 	   String output = "" + super.toString() + " " + getSpeed();
 	   return output;
    }
+	
 }
