@@ -13,80 +13,66 @@ public class Paddle extends Block
    public Paddle()
    {
 	   super(10,10);
-	   speed = 5;
+       speed =5;
    }
 
 
    //add the other Paddle constructors
-   public Paddle(int x, int y)
-   {
-	   super(x, y);
-	   speed = 5;
+   public Paddle(int x, int y){
+		  super(x,y);
+		  speed = 5;
+	   }
+   
+   public Paddle (int x, int y, int wid, int ht){
+		   super (x,y,wid,ht);
+		   setSpeed(5);
+	   }
+   
+   public Paddle(int x, int y, int spd){
+			super (x,y);
+			setSpeed(spd);
+		}
+   
+   public Paddle(int x, int y, int wid, int ht,int spd){
+			super (x,y, wid,ht);
+			setSpeed(spd);
+		}
+   
+   public Paddle(int x, int y, int wid, int ht, Color col, int spd){
+			super(x,y,wid,ht,col);
+			setSpeed(spd);
+		}
+
+
+
+
+   public void setSpeed(int spd) {
+	   speed = spd;
    }
    
-   public Paddle(int x, int y, int wd)
-   {
-	   super(x, y, wd);
-	   speed = 5;
-   }
-   
-   public Paddle(int x, int y, int wd, int ht)
-   {
-	   super(x, y, wd, ht);
-	   speed = 5;
-   }
-   
-   public Paddle(int x, int y, int wd, int ht, Color col)
-   {
-	   super(x, y, wd, ht, col);
-	   speed = 5;
-   }
-   
-   public Paddle(int x, int y, int wd, int ht, Color col, int sp)
-   {
-	   super(x, y, wd, ht, col);
-	   speed = sp;
-   }
-   
-   public Paddle(int x, int y, int wd, int ht, int sp)
-   {
-	   super(x, y, wd, ht);
-	   speed = sp;
+   public int getSpeed() {
+	   return speed;
    }
 
-   
-   
-   
+
+
    public void moveUpAndDraw(Graphics window)
    {
 	   draw(window, Color.WHITE);
-	   this.setY(this.getY()-getSpeed());
-	   draw(window, Color.WHITE);
+	   setY(getY()-speed);
+	   draw(window);
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-	   draw(window, Color.WHITE);
-	   this.setY(this.getY()+getSpeed());
+	   draw(window,Color.WHITE);
+	   setY(getY()+speed);
 	   draw(window);
    }
 
-   //add get methods
-   public int getSpeed()
-   {
-	   return speed;
-   }
-   
-   public void setSpeed(int spd)
-   {
-	   speed = spd;
-   }
    
    //add a toString() method
-   public String toString() 
-   {
-	   String output = "" + super.toString() + " " + getSpeed();
-	   return output;
+   public String toString() {
+	   return "x: "+getX()+" y: "+getY()+" width: "+getWidth()+" height: "+getHeight()+" color: "+getColor()+" speed: "+getSpeed();
    }
-	
 }
