@@ -11,41 +11,69 @@ import javax.imageio.ImageIO;
 public class Ammo extends MovingThing
 {
 	private int speed;
+	private boolean visible;
 
 	public Ammo()
 	{
 		this(0,0,0);
+		visible = false;
+		
 	}
 
 	public Ammo(int x, int y)
 	{
-		//add code
+		super(x, y);
+		visible = false;
 	}
 
 	public Ammo(int x, int y, int s)
 	{
-		//add code
+		super(x, y);
+		speed = s;
+		visible = false;
 	}
 
 	public void setSpeed(int s)
 	{
-	   //add code
+	   speed = s;
 	}
 
 	public int getSpeed()
 	{
-	   return 0;
+	   return speed;
+	}
+	
+	public boolean isVisible()
+	{
+		return visible;
+	}
+	
+	public void setVisible(boolean v)
+	{
+		visible = v;
 	}
 
-	public void draw( Graphics window )
+	public void draw(Graphics window)
 	{
-		//add code to draw the ammo
+		window.setColor(Color.YELLOW);
+		window.fillRect(this.getX()+20, this.getY(), 10, 10);
 	}
 	
 	
 	public void move( String direction )
 	{
-		//add code to draw the ammo
+		if (direction.equals("UP")) {
+			setY(this.getY() - 1);
+		}
+		if (direction.equals("DOWN")) {
+			setY(this.getY() + 1);
+		}
+		if (direction.equals("LEFT")) {
+			setX(this.getX() - 1);
+		}
+		if (direction.equals("RIGHT")) {
+			setX(this.getX() + 1);
+		}
 	}
 
 	public String toString()

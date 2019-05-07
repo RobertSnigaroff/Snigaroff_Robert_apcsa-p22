@@ -21,12 +21,13 @@ public class Ship extends MovingThing
 
 	public Ship(int x, int y)
 	{
-	   //add code here
+	   super(x, y);
 	}
 
 	public Ship(int x, int y, int s)
 	{
-	   //add code here
+	   super(x, y);
+	   speed = s;
 	}
 
 	public Ship(int x, int y, int w, int h, int s)
@@ -35,29 +36,39 @@ public class Ship extends MovingThing
 		speed=s;
 		try
 		{
-			URL url = getClass().getResource("/images/ship.jpg");
-			image = ImageIO.read(url);
+			image = ImageIO.read(new File("H:\\APCSA Units\\Unit17Students\\Unit17_Assignments-starfighter\\ship.jpg"));
 		}
 		catch(Exception e)
 		{
-			//feel free to do something here
+			System.out.print(e);
 		}
 	}
 
 
 	public void setSpeed(int s)
 	{
-	   //add more code
+	   speed = s;
 	}
 
 	public int getSpeed()
 	{
-	   return 0;
+	   return speed;
 	}
 
 	public void move(String direction)
 	{
-		//add code here
+		if (direction.equals("UP")) {
+			setY(this.getY() - 1);
+		}
+		else if (direction.equals("DOWN")) {
+			setY(this.getY() + 1);
+		}
+		else if (direction.equals("LEFT")) {
+			setX(this.getX() - 1);
+		}
+		else if (direction.equals("RIGHT")) {
+			setX(this.getX() + 1);
+		}
 	}
 
 	public void draw( Graphics window )
