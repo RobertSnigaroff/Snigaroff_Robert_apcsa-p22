@@ -21,6 +21,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienTwo;
     private AlienHorde horde;
 	private Bullets shots;
+	private boolean bulletExist;
 
 
 	private boolean[] keys;
@@ -37,6 +38,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		alienOne = new Alien(200, 100, 30, 30, 2);
 		alienTwo = new Alien(300, 100, 30, 30, 2);
 		shots = new Bullets();
+		bulletExist = false;
 		//horde = new AlienHorde();
 
 		this.addKeyListener(this);
@@ -73,13 +75,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		ship.draw(graphToBack);
 		alienOne.draw(graphToBack);
 		alienTwo.draw(graphToBack);
-		shots.add(new Ammo());
 		
-		shots.get(0).setX(ship.getX());
-		shots.get(0).setY(ship.getY());
+		if (bulletExist && shots.get(0).isVisible() == true && shots.get(0).getY() > 0) {
+			shots.get(0).move2("UP", graphToBack);
+		}
 		
-		if (shots.get(0).isVisible() == true) {
-			shots.get(0).draw(graphToBack);
+		if (bulletExist && shots.get(0).getY() <= 0) {
+			shots.get(0).setVisible(false);
+			shots.remove(0);
+			bulletExist = false;
 		}
 
 		//add code to move Ship, Alien, etc.
@@ -101,12 +105,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if (keys[4] == true)
 		{
+			bulletExist = true;
+			shots.add(new Ammo(ship.getX(), ship.getY()));
 			shots.get(0).setVisible(true);
-			while(shots.get(0).getY() > 0) 
-			{
-				shots.get(0).move("UP");
-			}
+			shots.cleanEmUp2();
 		}
+
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
 

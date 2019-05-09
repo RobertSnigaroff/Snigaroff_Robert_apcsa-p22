@@ -23,31 +23,31 @@ public class Pong2 extends Canvas implements KeyListener, Runnable
 	{
 		//set up all variables related to the game
 		ball = new Ball(350, 200);
-		mainPaddle = new Paddle2(375, 275, 50, 50, Color.BLUE, 2);
+		mainPaddle = new Paddle2(375, 275, 50, 50, Color.BLACK, 2);
 		//blocks on the left
 		for (int x = 5; x < 85; x += 40) {
 			for (int y = 5; y < 600-55; y += 80) {
-				blocks.add(new Block(x, y, 35, 75, Color.BLACK));
+				blocks.add(new Block(x, y, 35, 75, Color.RED));
 			}
 		}
 		//blocks on top
 		for (int x = 85; x < 675; x += 80) {
 			for (int y = 5; y < 85; y += 40) {
-				blocks.add(new Block(x, y, 75, 35, Color.BLACK));
+				blocks.add(new Block(x, y, 75, 35, Color.BLUE));
 			}
 		}
 		
 		//blocks on bottom
 		for (int x = 85; x < 675; x += 80) {
 			for (int y = 525; y > 445; y -= 40) {
-				blocks.add(new Block(x, y, 75, 35, Color.BLACK));
+				blocks.add(new Block(x, y, 75, 35, Color.YELLOW));
 			}
 		}
 		
 		//blocks on left
 		for (int x = 725; x < 800; x += 40) {
 			for (int y = 5; y < 600-55; y += 80) {
-				blocks.add(new Block(x, y, 35, 75, Color.BLACK));
+				blocks.add(new Block(x, y, 35, 75, Color.GREEN));
 			}
 		}
 
@@ -183,31 +183,31 @@ public class Pong2 extends Canvas implements KeyListener, Runnable
 			if (!played) {
 				//set up all variables related to the game
 				ball = new Ball(350, 200);
-				mainPaddle = new Paddle2(375, 275, 50, 50, Color.BLUE, 2);
+				mainPaddle = new Paddle2(375, 275, 50, 50, Color.BLACK, 2);
 				//blocks on the left
 				for (int x = 5; x < 85; x += 40) {
 					for (int y = 5; y < 600-55; y += 80) {
-						blocks.add(new Block(x, y, 35, 75, Color.BLACK));
+						blocks.add(new Block(x, y, 35, 75, Color.YELLOW));
 					}
 				}
 				//blocks on top
 				for (int x = 85; x < 675; x += 80) {
 					for (int y = 5; y < 85; y += 40) {
-						blocks.add(new Block(x, y, 75, 35, Color.BLACK));
+						blocks.add(new Block(x, y, 75, 35, Color.RED));
 					}
 				}
 				
 				//blocks on bottom
 				for (int x = 85; x < 675; x += 80) {
 					for (int y = 525; y > 445; y -= 40) {
-						blocks.add(new Block(x, y, 75, 35, Color.BLACK));
+						blocks.add(new Block(x, y, 75, 35, Color.GREEN));
 					}
 				}
 				
 				//blocks on left
 				for (int x = 725; x < 800; x += 40) {
 					for (int y = 5; y < 600-55; y += 80) {
-						blocks.add(new Block(x, y, 35, 75, Color.BLACK));
+						blocks.add(new Block(x, y, 35, 75, Color.BLUE));
 					}
 				}
 				played = true;
