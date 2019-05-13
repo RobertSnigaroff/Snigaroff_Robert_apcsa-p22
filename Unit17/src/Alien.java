@@ -13,39 +13,42 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
-	private boolean dead;
+	private boolean alive;
 
 	public Alien()
 	{
 		this(0,0,30,30,0);
-		dead = false;
+		alive = true;
 	}
 
 	public Alien(int x, int y)
 	{
-		super(x, y);
-		dead = false;
+		this.setX(x);
+		this.setY(y);
+		alive = true;
 	}
 
 	public Alien(int x, int y, int s)
 	{
-		super(x, y);
-		speed = s;
-		dead = false;
+		this.setX(x);
+		this.setY(y);
+		setSpeed(s);
+		alive = true;
 	}
 
 	public Alien(int x, int y, int w, int h, int s)
 	{
 		super(x, y, w,h);
 		speed=s;
-		dead = false;
+		alive = true;
 		try
 		{
-			image = ImageIO.read(new File("H:\\APCSA Units\\Unit17Students\\Unit17_Assignments-starfighter\\alien.jpg"));
+			URL url = getClass().getResource("/images/alien.jpg");
+			image = ImageIO.read(new File("H:\\APCSA Units\\Unit17Students\\Unit17_Assignments-starfighter\\Alien.jpg"));
 		}
 		catch(Exception e)
 		{
-			System.out.print(e);
+			//feel free to do something here
 		}
 	}
 
@@ -59,30 +62,67 @@ public class Alien extends MovingThing
 	   return speed;
 	}
 	
-	public void setDead(boolean bool)
+	public void setAlive(boolean s)
 	{
-		dead = bool;
+	   alive = s;
 	}
-	
-	public boolean getDead()
+
+	public boolean getAlive()
 	{
-		return dead;
+	   return alive;
 	}
 
    public void move(String direction)
 	{
-	    if (direction.equals("UP")) {
-			setY(this.getY() - 1);
+		if (direction.equals("UP")) {
+			this.setY(this.getY() - 1);
 		}
+		
 		if (direction.equals("DOWN")) {
-			setY(this.getY() + 1);
+			this.setY(this.getY() + 1);
 		}
+		
 		if (direction.equals("LEFT")) {
-			setX(this.getX() - 1);
+			this.setX(this.getX() - 1);
 		}
+		
 		if (direction.equals("RIGHT")) {
-			setX(this.getX() + 1);
+			this.setX(this.getX() + 1);
 		}
+
+	}
+   
+	public void move2( String direction, Graphics window)
+	{
+		if (direction.equals("UP")) {
+			this.draw2 (window, Color.BLACK);
+			this.setY(this.getY() - 1);
+			this.draw(window);
+		}
+		
+		if (direction.equals("DOWN")) {
+			this.draw2 (window, Color.BLACK);
+			this.setY(this.getY() + 20);
+			this.draw(window);
+		}
+		
+		if (direction.equals("LEFT")) {
+			this.draw2 (window, Color.BLACK);
+			this.setX(this.getX() - 1);
+			this.draw(window);
+		}
+		
+		if (direction.equals("RIGHT")) {
+			this.draw2 (window, Color.BLACK);
+			this.setX(this.getX() + 1);
+			this.draw(window);
+		}
+	}
+	
+	public void draw2( Graphics window, Color col )
+	{
+		window.setColor(col);
+		window.fillRect(this.getX() + 40,this.getY(), 40, 40);
 	}
 
 	public void draw( Graphics window )
