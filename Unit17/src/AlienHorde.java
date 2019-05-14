@@ -24,6 +24,18 @@ public class AlienHorde
 		aliens.add(al);
 	}
 	
+	public void remove(Alien al)
+	{
+		aliens.remove(al);
+	}
+	
+	public void removeAll()
+	{
+		for (Alien a : aliens) {
+			aliens.remove(a);
+		}
+	}
+	
 	public int getSize()
 	{
 		return aliens.size();

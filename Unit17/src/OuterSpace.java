@@ -3,6 +3,7 @@
 //Name -
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -25,6 +26,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private boolean[] keys;
 	private BufferedImage back;
 	private String direction;
+	private boolean loseflag;
 
 	public OuterSpace()
 	{
@@ -34,11 +36,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		//INSTANTIATING EVERYTHING
 		ship = new Ship(400,300,50,50,10);
+		ship.setSpeed(5);
 		alienOne = new Alien(200,100,30,30,2);
 		alienTwo = new Alien(300,100,30,30,2);
 		shots = new Bullets();
 		horde = new AlienHorde();
 		direction = "RIGHT";
+		loseflag = false;
+		
 
 		//makes the alien horde
 		for (int i = 5; i < 800; i+=100) {
@@ -92,24 +97,25 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			bulletexist = false;
 		}
 		
-		if (bulletexist == true && shots.get(0).isVisible() == true && shots.get(0).getY() > 0) {
+		if (bulletexist == true && shots.get(0).getVisible() == true && shots.get(0).getY() > 0) {
 			shots.get(0).move2("UP", graphToBack);
 		}
 		
 		
 		
 		//moves aliens
-		horde.moveEmAll(direction, graphToBack);
-		
-		if (horde.get(horde.getSize()-1).getX() + horde.get(horde.getSize()-1).getWidth() >= 785) {
-			direction = "DOWN";
+		if (horde.getSize() != 0) {
 			horde.moveEmAll(direction, graphToBack);
-			direction = "LEFT";
-		}
-		if (horde.get(0).getX() + horde.get(0).getWidth() <= 30) {
-			direction = "DOWN";
-			horde.moveEmAll(direction, graphToBack);
-			direction = "RIGHT";
+			if (horde.get(horde.getSize()-1).getX() + horde.get(horde.getSize()-1).getWidth() >= 785) {
+				direction = "DOWN";
+				horde.moveEmAll(direction, graphToBack);
+				direction = "LEFT";
+			}
+			if (horde.get(0).getX() + horde.get(0).getWidth() <= 30) {
+				direction = "DOWN";
+				horde.moveEmAll(direction, graphToBack);
+				direction = "RIGHT";
+			}
 		}
 		
 		if (ship.getX() >= 745) {
@@ -124,8 +130,40 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (ship.getY() < 0) {
 			ship.setY(0);
 		}
+	    if (ship.getY() < 450) {
+			ship.setY(450);
+		}
 		
+		if (loseflag == false)
+		for (Alien a : horde.getAliens()) {
+			if (bulletexist && Math.abs( shots.get(0).getX() - a.getX()) < 15 && Math.abs(shots.get(0).getY() - a.getY() ) < 15) { 
+				a.setAlive(false);
+				horde.removeDeadOnes();
+			}
+			if (/*a.getY() > ship.getY() - ship.getHeight() + 20 ||*/ a.getY() >= 525) {
+				loseflag = true;
+				break;
+			}
+			
+		}
 		
+		if (horde.getSize() == 0 && loseflag == false) {
+			graphToBack.setColor(Color.WHITE);
+			graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 25));
+			graphToBack.drawString("YOU WON",340,300);
+			graphToBack.setColor(Color.BLACK);
+		}
+		
+		if (loseflag == true) {
+			for (Alien b : horde.getAliens()) {
+				b.setAlive(false);
+			}
+			horde.removeDeadOnes();
+			graphToBack.setColor(Color.WHITE);
+			graphToBack.setFont(new Font("Helvetica", Font.PLAIN, 25));
+			graphToBack.drawString("YOU LOST",340,300);
+			graphToBack.setColor(Color.BLACK);
+		}
 		
 		
 		//KEYS TO MOVE THE SHIP
@@ -156,24 +194,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			bulletexist = true;
 			shots.add(new Ammo(ship.getX(), ship.getY()));
+			shots.get(0).setSpeed(8);
 			shots.get(0).setVisible(true);
 			shots.cleanEmUp2();
 		}
-		
-		//collision detection
-		for (Alien a : horde.getAliens()) {
-			if (lCollide(a)) {
-				a.setAlive(false);
-			}
-			if (rCollide(a)) {
-				a.setAlive(false);
-			}
-			if (bCollide(a)) {
-				a.setAlive(false);
-			}
-		}
-		
-		horde.removeDeadOnes();
 		
 		twoDGraph.drawImage(back, null, 0, 0);
 		
@@ -242,7 +266,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(5);
+   		   Thread.currentThread().sleep(12);
             repaint();
          }
       }catch(Exception e)
@@ -250,34 +274,5 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       }
   	}
    
- //COLLISION DETECTIONS
- //X AND Y ARE IN TOP LEFT AND DRAWS RIGHT AND DOWN!!!
- public boolean lCollide (MovingThing n) {
- 	   if(shots.get(0).getX() + 2*shots.get(0).getSpeed() >= n.getX() && shots.get(0).getX() < n.getX() + n.getWidth() /2 && shots.get(0).getY() >= n.getY() && shots.get(0).getY() <=  n.getY() + n.getHeight())
- 			return true;
- 	   else
- 		   return false;
- }
-
- public boolean rCollide (MovingThing n){
- 	   if(shots.get(0).getX() + 2*shots.get(0).getSpeed() <= n.getX() + n.getWidth() && shots.get(0).getX() >= n.getX() + n.getWidth()/2 && shots.get(0).getY() >= n.getY() && shots.get(0).getY() <=  n.getY() + n.getHeight())
- 			return true;
- 	   else
- 		   return false;
- }
-
- public boolean tCollide(MovingThing n){
- 	   if(shots.get(0).getY() + 2*shots.get(0).getSpeed() >= n.getY() && shots.get(0).getY() <= n.getY() + n.getHeight()/2 && shots.get(0).getX() >= n.getX() && shots.get(0).getX() <=  n.getX() + n.getWidth())
- 			return true;
- 	   else
- 		   return false;
- }
-
- public boolean bCollide(MovingThing n){
- 	   if(shots.get(0).getY() + 2*shots.get(0).getSpeed() <= n.getY() + n.getHeight() && shots.get(0).getY() >= n.getY() + n.getHeight()/2 && shots.get(0).getX() >= n.getX() && shots.get(0).getX() <=  n.getX() + n.getWidth())
- 			return true;
- 	   else
- 		   return false;
- }
  
 }

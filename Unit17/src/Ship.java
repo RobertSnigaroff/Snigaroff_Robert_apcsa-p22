@@ -1,7 +1,3 @@
-//(c) A+ Computer Science
-//www.apluscompsci.com
-//Name -
-
 import java.io.File;
 import java.net.URL;
 import java.awt.Color;
@@ -21,12 +17,14 @@ public class Ship extends MovingThing
 
 	public Ship(int x, int y)
 	{
-	   super(x, y);
+	   this.setX(x);
+	   this.setY(y);
 	}
 
 	public Ship(int x, int y, int s)
 	{
-	   super(x, y);
+	   this.setX(x);
+	   this.setY(y);
 	   speed = s;
 	}
 
@@ -36,7 +34,7 @@ public class Ship extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("H:\\APCSA Units\\Unit17Students\\Unit17_Assignments-starfighter\\ship.jpg"));
+			image = ImageIO.read(new File("H:\\APCSA\\Unit 17\\Unit17_Assignments-starfighter\\ship.jpg"));
 		}
 		catch(Exception e)
 		{
@@ -58,17 +56,21 @@ public class Ship extends MovingThing
 	public void move(String direction)
 	{
 		if (direction.equals("UP")) {
-			setY(this.getY() - 1);
+			setY(this.getY() - speed);
 		}
-		else if (direction.equals("DOWN")) {
-			setY(this.getY() + 1);
+		
+		if (direction.equals("DOWN")) {
+			setY(this.getY() + speed);
 		}
-		else if (direction.equals("LEFT")) {
-			setX(this.getX() - 1);
+		
+		if (direction.equals("LEFT")) {
+			setX(this.getX() - speed);
 		}
-		else if (direction.equals("RIGHT")) {
-			setX(this.getX() + 1);
+		
+		if (direction.equals("RIGHT")) {
+			setX(this.getX() + speed);
 		}
+
 	}
 
 	public void draw( Graphics window )
