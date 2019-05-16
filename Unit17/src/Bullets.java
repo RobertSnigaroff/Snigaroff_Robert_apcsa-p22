@@ -29,7 +29,7 @@ public class Bullets
 		return ammo.get(i);
 	}
 	
-	public void remove(int i)
+	public void remove(Ammo i)
 	{
 		ammo.remove(i);
 	}

@@ -27,6 +27,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private BufferedImage back;
 	private String direction;
 	private boolean loseflag;
+	private boolean pressed;
 
 	public OuterSpace()
 	{
@@ -90,15 +91,17 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
-		if (bulletexist == true && shots.get(0).getY() <= 0) {
-			shots.get(0).setVisible(false);
-			shots.remove(0);
-			bulletexist = false;
-		}
-		
-		if (bulletexist == true && shots.get(0).getVisible() == true && shots.get(0).getY() > 0) {
-			shots.get(0).move2("UP", graphToBack);
+		if (bulletexist = true) {
+			for (Ammo b : shots.getList()) {
+				if (b.getY() <= 0) {
+					b.setVisible(false);
+					shots.remove(b);
+				}
+				
+				if (b.getVisible() == true && b.getY() > 0) {
+					b.move2("UP", graphToBack);
+				}
+			}
 		}
 		
 		
@@ -130,17 +133,18 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (ship.getY() < 0) {
 			ship.setY(0);
 		}
-	    if (ship.getY() < 450) {
-			ship.setY(450);
-		}
 		
 		if (loseflag == false)
 		for (Alien a : horde.getAliens()) {
-			if (bulletexist && Math.abs( shots.get(0).getX() - a.getX()) < 15 && Math.abs(shots.get(0).getY() - a.getY() ) < 15) { 
-				a.setAlive(false);
-				horde.removeDeadOnes();
+			if (bulletexist == true) {
+				for (Ammo b : shots.getList()) {
+					if ((Math.abs( b.getX() - a.getX()) < 15 && Math.abs(b.getY() - a.getY() ) < 15)) { 
+						a.setAlive(false);
+						horde.removeDeadOnes();
+					}
+				}
 			}
-			if (/*a.getY() > ship.getY() - ship.getHeight() + 20 ||*/ a.getY() >= 525) {
+			if (Math.abs(ship.getX() - a.getX()) < 15 && Math.abs(ship.getY() - a.getY()) < 15 || a.getY() >= 550) {
 				loseflag = true;
 				break;
 			}
@@ -164,6 +168,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			graphToBack.drawString("YOU LOST",340,300);
 			graphToBack.setColor(Color.BLACK);
 		}
+		
+		if (shots.getList().size() > 0) {
+			bulletexist = true;
+		}
+		else {
+			bulletexist = false;
+		}
+		
+		
 		
 		
 		//KEYS TO MOVE THE SHIP
@@ -194,15 +207,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			bulletexist = true;
 			shots.add(new Ammo(ship.getX(), ship.getY()));
-			shots.get(0).setSpeed(8);
-			shots.get(0).setVisible(true);
-			shots.cleanEmUp2();
 		}
 		
 		twoDGraph.drawImage(back, null, 0, 0);
 		
 	}
 
+	
+	
+	
 	
 	public void keyPressed(KeyEvent e)
 	{
@@ -222,8 +235,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[3] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE)
-		{
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && pressed == false)
+		{System.out.println("Space Pressed");
+			pressed = true;
 			keys[4] = true;
 		}
 		repaint();
@@ -250,6 +264,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
 			keys[4] = false;
+			pressed = false;
 		}
 		repaint();
 	}
