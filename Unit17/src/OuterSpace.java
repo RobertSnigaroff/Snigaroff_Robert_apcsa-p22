@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Robert Snigaroff
 
 import java.awt.Color;
 import java.awt.Font;
@@ -97,13 +97,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					b.setVisible(false);
 					shots.remove(b);
 				}
-				
 				if (b.getVisible() == true && b.getY() > 0) {
 					b.move2("UP", graphToBack);
 				}
 			}
 		}
 		
+		if (shots.getList().size() > 0) {
+			System.out.println(shots.getList().size());
+		}
 		
 		
 		//moves aliens
@@ -140,6 +142,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				for (Ammo b : shots.getList()) {
 					if ((Math.abs( b.getX() - a.getX()) < 15 && Math.abs(b.getY() - a.getY() ) < 15)) { 
 						a.setAlive(false);
+						b.setVisible(false);
+						shots.remove(b);
 						horde.removeDeadOnes();
 					}
 				}
@@ -183,30 +187,27 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
-			System.out.println(ship.getX() + " " + ship.getY());
 		}
 
 		if(keys[1] == true)
 		{
 			ship.move("RIGHT");
-			System.out.println(ship.getX() + " " + ship.getY());
 		}
 
 		if(keys[2] == true)
 		{
 			ship.move("UP");
-			System.out.println(ship.getX() + " " + ship.getY());
 		}
 
 		if(keys[3] == true)
 		{
 			ship.move("DOWN");
-			System.out.println(ship.getX() + " " + ship.getY());
 		}
-		if(keys[4] == true)
+		if(keys[4] == true && pressed == true)
 		{
 			bulletexist = true;
-			shots.add(new Ammo(ship.getX(), ship.getY()));
+			shots.add(new Ammo(ship.getX(), ship.getY(), 5));
+			pressed = false;
 		}
 		
 		twoDGraph.drawImage(back, null, 0, 0);
@@ -263,8 +264,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			keys[4] = false;
 			pressed = false;
+			keys[4] = false;
 		}
 		repaint();
 	}

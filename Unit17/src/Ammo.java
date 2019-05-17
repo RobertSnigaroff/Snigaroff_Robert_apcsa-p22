@@ -30,6 +30,7 @@ public class Ammo extends MovingThing
 		this.setX(x);
 		this.setY(y);
 		speed = s;
+		visible = true;
 	}
 
 	public void setSpeed(int s)
