@@ -452,7 +452,8 @@ public class Picture extends SimplePicture
   //Picture Lab methods
   public void encode(Picture messagePic)
   {
-	  
+	  Pixel[][] messagePixels = messagePic.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
   }
   
   public void decode()
