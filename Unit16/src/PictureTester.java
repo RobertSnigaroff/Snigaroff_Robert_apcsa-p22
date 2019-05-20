@@ -169,6 +169,20 @@ public class PictureTester
 	  beach.mirrorDiagonal();
 	  beach.explore();
   }
+  
+  //Picture Lab tests
+  public static void testEncode()
+  {
+	  Picture beach = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.encode(new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\msg.jpg"));
+	  beach.explore();
+  }
+  
+  public static void testDecode()
+  {
+	  
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -176,6 +190,10 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
+	  
+	  //testEncode();
+	  //testDecode();
+	  
 //    testZeroBlue();
 //    testKeepOnlyBlue();
 //    testKeepOnlyRed();

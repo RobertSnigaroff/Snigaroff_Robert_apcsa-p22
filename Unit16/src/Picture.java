@@ -449,6 +449,17 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  //Picture Lab methods
+  public void encode(Picture messagePic)
+  {
+	  
+  }
+  
+  public void decode()
+  {
+	  
+  }
+  
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
