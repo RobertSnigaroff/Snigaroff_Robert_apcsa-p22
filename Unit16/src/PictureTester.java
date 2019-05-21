@@ -175,14 +175,14 @@ public class PictureTester
   {
 	  Picture beach = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\beach.jpg");
 	  beach.explore();
-	  beach.encode(new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\msg.jpg"));
+	  Picture message = new Picture("H:\\APCSA Units\\Unit16Students\\Unit16-Assignments-pixLab\\images\\msg.jpg");
+	  message.explore();
+	  beach.encode(message);
+	  beach.explore();
+	  beach.decode();
 	  beach.explore();
   }
   
-  public static void testDecode()
-  {
-	  
-  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
