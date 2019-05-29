@@ -477,18 +477,18 @@ public class Picture extends SimplePicture
  		   	int rleft = imgpixels[i][j].getRed() - rdig;
  		   	int gleft = imgpixels[i][j].getGreen() - gdig;
  		   	int bleft = imgpixels[i][j].getBlue() - bdig;
- 		   if (msglocs[i][j] == true) { //if its the message it will set the final digit to odd prime numbers
- 		   	rdig = 3;
- 		   	while (!ismult3(gdig)) {
- 			   	gdig++;
- 		   	}
- 		   	while (!ismult3(bdig)) {
- 			   	bdig++;
- 		   	}
- 		   }
- 		   else {
- 			   rdig = 2;
- 		   }
+ 		    if (msglocs[i][j] == true) { //if its the message it will set the final digit to odd prime numbers
+ 		    	rdig = 3;
+ 		    	while (!ismult3(gdig)) {
+ 		    		gdig++;
+ 		    	}
+ 		    	while (!ismult3(bdig)) {
+ 		    		bdig++;
+ 		    	}
+ 		    }
+ 		    else {
+ 			    rdig = 2;
+ 		    }
  		   	imgpixels[i][j].setRed(rdig + rleft);
  		   	imgpixels[i][j].setGreen(gdig + gleft);
  		   	imgpixels[i][j].setBlue(bdig + bleft);
